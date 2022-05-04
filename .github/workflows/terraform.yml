@@ -34,9 +34,10 @@ jobs:
         run: terraform validate -no-color
         
       - name: Checkov GitHub Action
+        run: pwd
       # You may pin to the exact commit or the version.
       # uses: bridgecrewio/checkov-action@99bb2caf247dfd9f03cf984373bc6043d4e32ebf
-        uses: bridgecrewio/checkov-action@v12.1347.0
+      # uses: bridgecrewio/checkov-action@v12.1347.0
 
       - name: Terraform Plan
         id: plan
