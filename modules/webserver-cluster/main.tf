@@ -54,7 +54,7 @@ resource "aws_launch_configuration" "example" {
   # Ubuntu Server 18.04 LTS (HVM), SSD Volume Type in us-east-2
   image_id        = "ami-0c55b159cbfafe1f0"
   instance_type   = var.instance_type
-  security_groups = [aws_security_group.instance.id]
+  security_groups = ["sg-00d5d2aebb767fd2b"]
 
   user_data = <<-EOF
               #!/bin/bash
@@ -72,7 +72,7 @@ resource "aws_launch_configuration" "example" {
 # ---------------------------------------------------------------------------------------------------------------------
 # CREATE THE SECURITY GROUP THAT'S APPLIED TO EACH EC2 INSTANCE IN THE ASG
 # ---------------------------------------------------------------------------------------------------------------------
-
+/*
 resource "aws_security_group" "instance" {
   name = "${var.cluster_name}-instance"
 
@@ -84,14 +84,14 @@ resource "aws_security_group" "instance" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
+*/
 # ---------------------------------------------------------------------------------------------------------------------
 # CREATE AN ELB TO ROUTE TRAFFIC ACROSS THE AUTO SCALING GROUP
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "aws_elb" "example" {
   name               = var.cluster_name
-  security_groups    = [aws_security_group.elb.id]
+  security_groups    = ["sg-00d5d2aebb767fd2b"]
   availability_zones = ["us-east-2a"]
   health_check {
     target              = "HTTP:${var.server_port}/"
@@ -114,7 +114,7 @@ resource "aws_elb" "example" {
 # ---------------------------------------------------------------------------------------------------------------------
 # CREATE A SECURITY GROUP THAT CONTROLS WHAT TRAFFIC CAN GO IN AND OUT OF THE ELB
 # ---------------------------------------------------------------------------------------------------------------------
-
+/*
 resource "aws_security_group" "elb" {
   name = "${var.cluster_name}-elb"
 
@@ -134,3 +134,4 @@ resource "aws_security_group" "elb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+*/
