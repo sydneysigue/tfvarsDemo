@@ -32,6 +32,14 @@ jobs:
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
+        
+      - name: Checkov
+        run: checkov -d /home/github/_work/tfvarsDemo2/tfvarsDemo2
+        continue-on-error: true
+        
+      - name: Tfsec
+        run: tfsec ./
+        continue-on-error: true
 
       - name: Terraform Plan
         id: plan
