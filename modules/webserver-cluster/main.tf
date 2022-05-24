@@ -54,11 +54,11 @@ resource "aws_launch_configuration" "example" {
   # Ubuntu Server 18.04 LTS (HVM), SSD Volume Type in us-east-2
   image_id        = "ami-0c55b159cbfafe1f0"
   instance_type   = var.instance_type
-  security_groups = ["sg-00d5d2aebb767fd2b"]
+  security_groups = [aws_security_group.instance.id]
 
   user_data = <<-EOF
               #!/bin/bash
-              echo "Hello, World!!" > index.html
+              echo "Hello, World!!!" > index.html
               nohup busybox httpd -f -p "${var.server_port}" &
               EOF
 
@@ -91,7 +91,7 @@ resource "aws_security_group" "instance" {
 
 resource "aws_elb" "example" {
   name               = var.cluster_name
-  security_groups    = ["sg-00d5d2aebb767fd2b"]
+  security_groups    = [aws_security_group.elb.id]
   availability_zones = ["us-east-2a"]
   health_check {
     target              = "HTTP:${var.server_port}/"
@@ -134,4 +134,3 @@ resource "aws_security_group" "elb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
