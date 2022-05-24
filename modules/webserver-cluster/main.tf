@@ -58,7 +58,7 @@ resource "aws_launch_configuration" "example" {
 
   user_data = <<-EOF
               #!/bin/bash
-              echo "Hello, World!!" > index.html
+              echo "Hello, World!!!" > index.html
               nohup busybox httpd -f -p "${var.server_port}" &
               EOF
 
@@ -134,4 +134,3 @@ resource "aws_security_group" "elb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
