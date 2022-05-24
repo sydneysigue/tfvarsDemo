@@ -72,7 +72,7 @@ resource "aws_launch_configuration" "example" {
 # ---------------------------------------------------------------------------------------------------------------------
 # CREATE THE SECURITY GROUP THAT'S APPLIED TO EACH EC2 INSTANCE IN THE ASG
 # ---------------------------------------------------------------------------------------------------------------------
-
+/*
 resource "aws_security_group" "instance" {
   name = "${var.cluster_name}-instance"
 
@@ -84,7 +84,7 @@ resource "aws_security_group" "instance" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
+*/
 # ---------------------------------------------------------------------------------------------------------------------
 # CREATE AN ELB TO ROUTE TRAFFIC ACROSS THE AUTO SCALING GROUP
 # ---------------------------------------------------------------------------------------------------------------------
@@ -114,7 +114,7 @@ resource "aws_elb" "example" {
 # ---------------------------------------------------------------------------------------------------------------------
 # CREATE A SECURITY GROUP THAT CONTROLS WHAT TRAFFIC CAN GO IN AND OUT OF THE ELB
 # ---------------------------------------------------------------------------------------------------------------------
-
+/*
 resource "aws_security_group" "elb" {
   name = "${var.cluster_name}-elb"
 
@@ -134,4 +134,4 @@ resource "aws_security_group" "elb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
+*/
