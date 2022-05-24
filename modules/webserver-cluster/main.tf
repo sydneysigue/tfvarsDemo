@@ -31,7 +31,7 @@ terraform {
 
 resource "aws_autoscaling_group" "example" {
   launch_configuration = aws_launch_configuration.example.id
-  availability_zones   = ["us-east-2a"]
+  availability_zones   = ["us-east-2b"]
 
   min_size = var.min_size
   max_size = var.max_size
@@ -58,7 +58,7 @@ resource "aws_launch_configuration" "example" {
 
   user_data = <<-EOF
               #!/bin/bash
-              echo "Hello, World!" > index.html
+              echo "Hello, World!!" > index.html
               nohup busybox httpd -f -p "${var.server_port}" &
               EOF
 
